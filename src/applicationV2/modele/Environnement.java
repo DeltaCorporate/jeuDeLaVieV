@@ -2,21 +2,25 @@ package applicationV2.modele;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-
-import java.util.ArrayList;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Environnement {
 
 	private int width,height;	
-	private ArrayList<Acteur> acteurs;
+	private ObservableList<Acteur> acteurs;
 	private  IntegerProperty nbTours;
+	private StringProperty temps;
 
 	public Environnement(int width, int height) {
 		super();
 		this.width = width;
 		this.height = height;
 		this.nbTours = new SimpleIntegerProperty(0);
-		this.acteurs= new ArrayList<>();
+		this.acteurs= FXCollections.observableArrayList();
+		this.temps = new SimpleStringProperty("JOUR");
 	}
 
 	public final  int getNbTours(){
@@ -30,6 +34,16 @@ public class Environnement {
 		return this.nbTours;
 	}
 
+	public final String getTemps(){
+		return this.temps.getValue();
+	}
+	public final void setTemps(String temps){
+		this.temps.setValue(temps);
+	}
+	public final StringProperty tempsProperty(){
+		return this.temps;
+	}
+
 	public int getWidth() {
 		return width;
 	}
@@ -38,7 +52,7 @@ public class Environnement {
 		return height;
 	}
 
-	public ArrayList<Acteur> getActeurs() {
+	public ObservableList<Acteur> getActeurs() {
 		return acteurs;
 	}
 
@@ -76,6 +90,13 @@ public class Environnement {
 			}
 		}
 		this.setNbTours(this.getNbTours()+1);
+		if(this.getNbTours()%12 == 0){
+			if(this.getTemps().equals("JOUR")){
+				setTemps("NUIT");
+			} else{
+				setTemps("JOUR");
+			}
+		}
 	}
 
 

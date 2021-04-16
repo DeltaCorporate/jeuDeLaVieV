@@ -77,7 +77,6 @@ public abstract class Acteur {
 
 
 
-
 	public boolean estVivant() {
 		return this.pv>0;
 	}

@@ -17,6 +17,7 @@ public class Mouton extends Acteur{
 	}
 
 	public static void setReproduction(double n){
+		System.out.println(n);
 		pourcentageRepro=n;
 	}
 

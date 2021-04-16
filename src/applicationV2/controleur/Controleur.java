@@ -20,21 +20,6 @@ public class Controleur implements Initializable{
 	private Pane panneauJeu;
 
 	@FXML
-	private ToggleGroup groupeRadio;
-
-	@FXML
-	private RadioButton ajoutLoup;
-
-	@FXML
-	private RadioButton ajoutMouton;
-
-	@FXML
-	private TextField nbIndividus;
-
-	@FXML
-	private TextField saisieNbTours;
-
-	@FXML
 	private Label nbtours;
 
 	@FXML
@@ -45,6 +30,31 @@ public class Controleur implements Initializable{
 
 	@FXML
 	private Label nbmoutons;
+
+	@FXML
+	private RadioButton ajoutLoup;
+
+	@FXML
+	private ToggleGroup groupeRadio;
+
+	@FXML
+	private RadioButton ajoutMouton;
+
+	@FXML
+	private TextField nbIndividus;
+
+	@FXML
+	private Slider reproductionLoup;
+
+	@FXML
+	private Slider reproductionMouton;
+
+	@FXML
+	private TextField saisieNbTours;
+
+	@FXML
+	private Label temps;
+
 	@FXML
 	void ajouter(ActionEvent event) {
 		//System.out.println("clic ajouter");
@@ -89,22 +99,22 @@ public class Controleur implements Initializable{
 		this.env=new Environnement(300,300);		
 		// version avec bind :
 			//this.nbtours.textProperty().bind(this.env.NbToursProperty().asString());
+		this.temps.textProperty().bind(this.env.tempsProperty());
 		// version avec listener
 		//MonObservateurDeTour obs = new MonObservateurDeTour(this.nbtours);
 		//this.env.NbToursProperty().addListener(obs);
 		// version avec des lambdas :
 		this.env.NbToursProperty().addListener((obse,old,nouv)-> this.nbtours.setText(nouv.toString()));
-
 		// ecoute des slider pour mettre a jour les taux de reproduction.
-		//this.sliderLoups.valueProperty().addListener((obs,old,nouv)-> Loup.setReproduction((double)nouv));
-		//this.sliderMoutons.valueProperty().addListener((obs,old,nouv)-> Mouton.setReproduction((double)nouv));
+		this.reproductionLoup.valueProperty().addListener((obs,old,nouv)-> Loup.setReproduction((double)nouv));
+		this.reproductionMouton.valueProperty().addListener((obs,old,nouv)-> Mouton.setReproduction((double)nouv));
 
 		// mettre cela pour que les acteurs ne sortent pas visuellement du panneau de jeu en bas et a sroite...
 		this.panneauJeu.setMaxWidth(305); // 5== largeur de l'image ou du rectangle.
 		this.panneauJeu.setMaxHeight(305);
 		// ecoute de la liste des acteurs pour prendre en compte les morts et les vivants
-		//this.env.getActeurs().addListener(new MonObservateurActeurs(this.panneauJeu, this.labelVivants, this.labelnbLoups,this.labelnbMoutons));
-		//this.env.init();
+		//this.env.getActeurs().addListener(new MonObservateurActeurs(this.panneauJeu, this.nbvivants, this.nbloups,this.nbmoutons));
+		this.env.init();
 	}
 
 	private void creerSprite(Acteur a) {

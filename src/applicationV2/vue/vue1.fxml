@@ -83,9 +83,9 @@
                <children>
                   <Label alignment="CENTER" prefHeight="33.0" prefWidth="115.0" styleClass="label-bright" text="Reproduction" wrapText="true" />
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="121.0" styleClass="label-bright" text="Loups" />
-                  <Slider blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" showTickMarks="true" value="3.0" />
+                  <Slider fx:id="reproductionLoup" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" showTickMarks="true" value="3.0" />
                   <Label alignment="CENTER" prefHeight="17.0" prefWidth="117.0" styleClass="label-bright" text="Moutons" />
-                  <Slider blockIncrement="1.0" layoutX="17.0" layoutY="61.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" showTickMarks="true" value="3.0" />
+                  <Slider fx:id="reproductionMouton" blockIncrement="1.0" layoutX="17.0" layoutY="61.0" majorTickUnit="1.0" max="10.0" minorTickCount="1" showTickMarks="true" value="3.0" />
                </children>
             </VBox>
             <VBox alignment="CENTER" layoutX="10.0" layoutY="210.0" prefHeight="83.0" prefWidth="100.0" styleClass="encadre">
@@ -116,4 +116,11 @@
          </padding>
       </VBox>
    </right>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="temps" prefHeight="41.0" prefWidth="100.0" style="-fx-background-color: white; -fx-text-fill: black;" text="NUIT" />
+         </children>
+      </VBox>
+   </left>
 </BorderPane>
